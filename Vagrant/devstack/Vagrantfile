@@ -11,12 +11,13 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     config.vm.provider "virtualbox" do |v|
       v.gui = false
-      v.memory = 131072
-      v.cpus = 16
+      v.memory = 8192
+      v.cpus = 2
     end
 
     config.vm.network "private_network", ip: "10.0.0.25"
     config.vm.network "forwarded_port", guest: 80, host: 8080
+    config.vm.network "forwarded_port", guest: 6080, host: 6080
 
     config.ssh.forward_agent = true
 
