@@ -13,7 +13,12 @@
 					"script": {
 						"id": "8e261bcd-a92c-4808-8c3f-7cce508790fd",
 						"exec": [
-							"postman.setEnvironmentVariable(\"x_subject_token\", postman.getResponseHeader(\"X-Subject-Token\"))"
+							"var body = JSON.parse(responseBody)",
+							"",
+							"postman.setEnvironmentVariable(\"x_subject_token\", postman.getResponseHeader(\"X-Subject-Token\"))",
+							"postman.setEnvironmentVariable(\"project_id\", body.token.project.id)",
+							"postman.setEnvironmentVariable(\"user_id\", body.token.user.id)",
+							""
 						],
 						"type": "text/javascript"
 					}
@@ -54,69 +59,7 @@
 			"response": []
 		},
 		{
-			"name": "2 - GetDemoProjectId",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "644baed7-b100-4d05-a87a-bb5c26bb398b",
-						"exec": [
-							"var body = JSON.parse(responseBody)",
-							"",
-							"for (var i=0; i<body.projects.length; i++) {",
-							"    if(body.projects[i].name == \"demo\") {",
-							"        postman.setEnvironmentVariable(\"project_id\", body.projects[i].id)",
-							"    }",
-							"}",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "X-Auth-Token",
-						"value": "{{x_subject_token}}",
-						"type": "text"
-					},
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{url}}/identity/v3/projects",
-					"host": [
-						"{{url}}"
-					],
-					"path": [
-						"identity",
-						"v3",
-						"projects"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "3 - GetExternalNetworkId",
+			"name": "2 - GetExternalNetworkId",
 			"event": [
 				{
 					"listen": "test",
@@ -160,7 +103,7 @@
 			"response": []
 		},
 		{
-			"name": "4 - GetImageId",
+			"name": "3 - GetImageId",
 			"event": [
 				{
 					"listen": "test",
@@ -204,7 +147,7 @@
 			"response": []
 		},
 		{
-			"name": "5 - GetFlavorId",
+			"name": "4 - GetFlavorId",
 			"event": [
 				{
 					"listen": "test",
@@ -229,8 +172,8 @@
 				"header": [
 					{
 						"key": "X-Auth-Token",
-						"value": "{{x_subject_token}}",
-						"type": "text"
+						"type": "text",
+						"value": "{{x_subject_token}}"
 					}
 				],
 				"url": {

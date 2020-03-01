@@ -1,0 +1,87 @@
+{
+	"info": {
+		"_postman_id": "3ec044ee-ee46-4be3-aab4-ade3ceda2f7a",
+		"name": "OpenStack - Create (Example)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "CreateNetwork",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "eab41c66-7939-4209-a1df-0cb8fa699936",
+						"exec": [
+							"var body = JSON.parse(responseBody)",
+							"",
+							"postman.setEnvironmentVariable('network_id', body.network.id)",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "X-Auth-Token",
+						"type": "text",
+						"value": "{{x_subject_token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"network\": {\r\n        \"name\": \"{{owner}}-network\",\r\n        \"admin_state_up\": true,\r\n        \"mtu\": 1450,\r\n        \"project_id\": \"{{project_id}}\"\r\n    }\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}:9696/v2.0/networks",
+					"host": [
+						"{{url}}"
+					],
+					"port": "9696",
+					"path": [
+						"v2.0",
+						"networks"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "01ea34b1-1004-45b7-80a1-bcc6d15a0576",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "ab143950-e886-4c95-a96d-ab166eae36b7",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

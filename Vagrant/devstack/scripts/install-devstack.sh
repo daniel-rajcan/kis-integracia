@@ -38,3 +38,8 @@ export OS_AUTH_URL=http://$HOST_IP/identity
 export OS_IDENTITY_API_VERSION=3
 export OS_IMAGE_API_VERSION=2
 EOF
+
+source /home/vagrant/admin-openrc
+
+openstack user set --project demo demo
+openstack user set --project admin admin
