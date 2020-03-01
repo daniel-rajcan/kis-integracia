@@ -1,0 +1,252 @@
+{
+	"info": {
+		"_postman_id": "ae44de77-6863-47ef-a31a-7297f8fa1e0e",
+		"name": "OpenStack - Authorize",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "1 - GetAuthToken",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "8e261bcd-a92c-4808-8c3f-7cce508790fd",
+						"exec": [
+							"postman.setEnvironmentVariable(\"x_subject_token\", postman.getResponseHeader(\"X-Subject-Token\"))"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"auth\": {\r\n        \"identity\": {\r\n            \"methods\": [\r\n                \"password\"\r\n            ],\r\n            \"password\": {\r\n                \"user\": {\r\n                    \"name\": \"{{username}}\",\r\n                    \"domain\": {\r\n                        \"name\": \"Default\"\r\n                    },\r\n                    \"password\": \"{{password}}\"\r\n                }\r\n            }\r\n        }\r\n    }\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/identity/v3/auth/tokens",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"identity",
+						"v3",
+						"auth",
+						"tokens"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2 - GetDemoProjectId",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "644baed7-b100-4d05-a87a-bb5c26bb398b",
+						"exec": [
+							"var body = JSON.parse(responseBody)",
+							"",
+							"for (var i=0; i<body.projects.length; i++) {",
+							"    if(body.projects[i].name == \"demo\") {",
+							"        postman.setEnvironmentVariable(\"project_id\", body.projects[i].id)",
+							"    }",
+							"}",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{x_subject_token}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/identity/v3/projects",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"identity",
+						"v3",
+						"projects"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "3 - GetExternalNetworkId",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "202bc556-7bb3-4a09-85cd-3ef9e22499be",
+						"exec": [
+							"var body = JSON.parse(responseBody)",
+							"",
+							"for (var i=0; i<body.networks.length; i++) {",
+							"    if(body.networks[i].name == \"public\") {",
+							"        postman.setEnvironmentVariable(\"external_network_id\", body.networks[i].id)",
+							"    }",
+							"}",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{x_subject_token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url}}:9696/v2.0/networks",
+					"host": [
+						"{{url}}"
+					],
+					"port": "9696",
+					"path": [
+						"v2.0",
+						"networks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "4 - GetImageId",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f01d4169-9026-4f8c-a4b4-7feec97d3801",
+						"exec": [
+							"var body = JSON.parse(responseBody)",
+							"",
+							"for (var i=0; i<body.images.length; i++) {",
+							"    if(body.images[i].name == \"cirros-0.4.0-x86_64-disk\") {",
+							"        postman.setEnvironmentVariable(\"image_id\", body.images[i].id)",
+							"    }",
+							"}",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{x_subject_token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/image/v2/images",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"image",
+						"v2",
+						"images"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "5 - GetFlavorId",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "cce90696-6306-4099-8fa1-f557abd15e27",
+						"exec": [
+							"var body = JSON.parse(responseBody)",
+							"",
+							"for (var i=0; i<body.flavors.length; i++) {",
+							"    if(body.flavors[i].name == \"m1.nano\") {",
+							"        postman.setEnvironmentVariable(\"flavor_id\", body.flavors[i].id)",
+							"    }",
+							"}",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{x_subject_token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/compute/v2.1/flavors",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"compute",
+						"v2.1",
+						"flavors"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

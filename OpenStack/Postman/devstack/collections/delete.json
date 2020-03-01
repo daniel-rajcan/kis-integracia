@@ -1,0 +1,243 @@
+{
+	"info": {
+		"_postman_id": "93900043-2b91-4b96-9b90-fd633e6d916a",
+		"name": "OpenStack - Delete",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "1 - DeleteServer",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a69cc7fa-9fbb-4043-af4c-6bf759413db7",
+						"exec": [
+							"postman.clearEnvironmentVariable(\"server_id\")",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{x_subject_token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/compute/v2.1/servers/{{server_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"compute",
+						"v2.1",
+						"servers",
+						"{{server_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2 - RemoveRouterInterface",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "08712b8f-7c39-40d2-8d76-fa49eda0c780",
+						"exec": [
+							"postman.clearEnvironmentVariable(\"port_id\")",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "X-Auth-Token",
+						"value": "{{x_subject_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"subnet_id\": \"{{subnet_id}}\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}:9696/v2.0/routers/{{router_id}}/remove_router_interface",
+					"host": [
+						"{{url}}"
+					],
+					"port": "9696",
+					"path": [
+						"v2.0",
+						"routers",
+						"{{router_id}}",
+						"remove_router_interface"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "3 - DeleteRouter",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "dab4a2d0-4007-4db7-8d17-8c99a6175b0b",
+						"exec": [
+							"postman.clearEnvironmentVariable(\"router_id\")",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{x_subject_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}:9696/v2.0/routers/{{router_id}}?project_id={{project_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"port": "9696",
+					"path": [
+						"v2.0",
+						"routers",
+						"{{router_id}}"
+					],
+					"query": [
+						{
+							"key": "project_id",
+							"value": "{{project_id}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "4 - DeleteSubnet",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "cbd215d0-a9dd-4d3b-9575-ccc99e169852",
+						"exec": [
+							"postman.clearEnvironmentVariable(\"subnet_id\")",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{x_subject_token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url}}:9696/v2.0/subnets/{{subnet_id}}?project_id={{project_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"port": "9696",
+					"path": [
+						"v2.0",
+						"subnets",
+						"{{subnet_id}}"
+					],
+					"query": [
+						{
+							"key": "project_id",
+							"value": "{{project_id}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "5 - DeleteNetwork",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7fde7bb0-735f-4911-81bb-6b174ec181b7",
+						"exec": [
+							"postman.clearEnvironmentVariable(\"network_id\")",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{x_subject_token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url}}:9696/v2.0/networks/{{network_id}}?project_id={{project_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"port": "9696",
+					"path": [
+						"v2.0",
+						"networks",
+						"{{network_id}}"
+					],
+					"query": [
+						{
+							"key": "project_id",
+							"value": "{{project_id}}"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
