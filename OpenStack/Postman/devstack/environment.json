@@ -1,5 +1,5 @@
 {
-	"id": "f0564846-8145-4506-9b53-4b74ed86e680",
+	"id": "ae5982ef-3e57-48ee-abce-6da7ee01bbe8",
 	"name": "OpenStack",
 	"values": [
 		{
@@ -21,19 +21,9 @@
 			"key": "owner",
 			"value": "drajcan",
 			"enabled": true
-		},
-		{
-			"key": "x_subject_token",
-			"value": "",
-			"enabled": true
-		},
-		{
-			"key": "project_id",
-			"value": "",
-			"enabled": true
 		}
 	],
 	"_postman_variable_scope": "environment",
-	"_postman_exported_at": "2020-03-01T23:03:23.077Z",
+	"_postman_exported_at": "2020-03-01T23:39:02.396Z",
 	"_postman_exported_using": "Postman/7.19.1"
 }
