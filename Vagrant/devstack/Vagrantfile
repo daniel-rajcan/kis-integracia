@@ -16,8 +16,15 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     end
 
     config.vm.network "private_network", ip: "10.0.0.25"
+
+    ### horizon
     config.vm.network "forwarded_port", guest: 80, host: 8080
+
+    ### vnc
     config.vm.network "forwarded_port", guest: 6080, host: 6080
+
+    ### neutron api
+    config.vm.network "forwarded_port", guest: 9696, host: 9696
 
     config.ssh.forward_agent = true
 
