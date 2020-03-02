@@ -14,13 +14,13 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       v.cpus = 1
     end
 
+    config.vm.hostname = "kis.vagrant"
+
     config.vm.network "private_network", virtualbox__intnet: "vboxnet1", auto_config: false
     config.vm.network "private_network", virtualbox__intnet: "vboxnet2", auto_config: false
 
     config.vm.provision "shell", path: "scripts/base.sh", privileged: true
     config.vm.provision "shell", path: "scripts/kis/configure.sh", privileged: true
-
-    config.vm.hostname = "kis.vagrant"
   end
 
 ##############
@@ -35,12 +35,12 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       v.cpus = 1
     end
 
+    config.vm.hostname = "amazon.vagrant"
+
     config.vm.network "private_network", ip: "10.10.10.100", virtualbox__intnet: "vboxnet1"
 
     config.vm.provision "shell", path: "scripts/base.sh", privileged: true
     config.vm.provision "shell", path: "scripts/amazon/configure.sh", privileged: true
-
-    config.vm.hostname = "amazon.vagrant"
   end
 
 #################
@@ -55,12 +55,12 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       v.cpus = 1
     end
 
+    config.vm.hostname = "microsoft.vagrant"
+
     config.vm.network "private_network", ip: "10.10.10.200", virtualbox__intnet: "vboxnet2"
 
     config.vm.provision "shell", path: "scripts/base.sh", privileged: true
     config.vm.provision "shell", path: "scripts/microsoft/configure.sh", privileged: true
-
-    config.vm.hostname = "microsoft.vagrant"
   end
 
 end
