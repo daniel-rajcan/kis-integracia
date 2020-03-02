@@ -1,5 +1,5 @@
 {
-	"id": "ae5982ef-3e57-48ee-abce-6da7ee01bbe8",
+	"id": "05e1ff9e-0731-4a80-98f0-c09294ef55d3",
 	"name": "OpenStack",
 	"values": [
 		{
@@ -14,16 +14,21 @@
 		},
 		{
 			"key": "url",
-			"value": "http://10.0.0.25",
+			"value": "http://158.193.152.30:8080",
 			"enabled": true
 		},
 		{
 			"key": "owner",
 			"value": "drajcan",
 			"enabled": true
+		},
+		{
+			"key": "neutron_url",
+			"value": "http://158.193.152.30:9696",
+			"enabled": true
 		}
 	],
 	"_postman_variable_scope": "environment",
-	"_postman_exported_at": "2020-03-01T23:39:02.396Z",
+	"_postman_exported_at": "2020-03-02T20:28:09.105Z",
 	"_postman_exported_using": "Postman/7.19.1"
 }

@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "ae44de77-6863-47ef-a31a-7297f8fa1e0e",
+		"_postman_id": "4f2cf175-faff-476b-ace1-593bdaf31d97",
 		"name": "OpenStack - Authorize",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -89,11 +89,10 @@
 					}
 				],
 				"url": {
-					"raw": "{{url}}:9696/v2.0/networks",
+					"raw": "{{neutron_url}}/v2.0/networks",
 					"host": [
-						"{{url}}"
+						"{{neutron_url}}"
 					],
-					"port": "9696",
 					"path": [
 						"v2.0",
 						"networks"

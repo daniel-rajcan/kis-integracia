@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "92435520-aa0b-4163-a1c1-86588c4131a3",
+		"_postman_id": "84e01371-e6f4-49f1-940f-9aeb4bc033b3",
 		"name": "OpenStack - List",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -17,11 +17,10 @@
 					}
 				],
 				"url": {
-					"raw": "{{url}}:9696/v2.0/networks?project_id={{project_id}}",
+					"raw": "{{neutron_url}}/v2.0/networks?project_id={{project_id}}",
 					"host": [
-						"{{url}}"
+						"{{neutron_url}}"
 					],
-					"port": "9696",
 					"path": [
 						"v2.0",
 						"networks"
@@ -48,11 +47,10 @@
 					}
 				],
 				"url": {
-					"raw": "{{url}}:9696/v2.0/subnets?project_id={{project_id}}",
+					"raw": "{{neutron_url}}/v2.0/subnets?project_id={{project_id}}",
 					"host": [
-						"{{url}}"
+						"{{neutron_url}}"
 					],
-					"port": "9696",
 					"path": [
 						"v2.0",
 						"subnets"
@@ -79,11 +77,10 @@
 					}
 				],
 				"url": {
-					"raw": "{{url}}:9696/v2.0/routers?project_id={{project_id}}",
+					"raw": "{{neutron_url}}/v2.0/routers?project_id={{project_id}}",
 					"host": [
-						"{{url}}"
+						"{{neutron_url}}"
 					],
-					"port": "9696",
 					"path": [
 						"v2.0",
 						"routers"

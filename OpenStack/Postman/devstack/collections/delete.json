@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "93900043-2b91-4b96-9b90-fd633e6d916a",
+		"_postman_id": "d64f4b78-bc83-4d08-b2bf-77bd149f845c",
 		"name": "OpenStack - Delete",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -84,11 +84,10 @@
 					}
 				},
 				"url": {
-					"raw": "{{url}}:9696/v2.0/routers/{{router_id}}/remove_router_interface",
+					"raw": "{{neutron_url}}/v2.0/routers/{{router_id}}/remove_router_interface",
 					"host": [
-						"{{url}}"
+						"{{neutron_url}}"
 					],
-					"port": "9696",
 					"path": [
 						"v2.0",
 						"routers",
@@ -128,11 +127,10 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "{{url}}:9696/v2.0/routers/{{router_id}}?project_id={{project_id}}",
+					"raw": "{{neutron_url}}/v2.0/routers/{{router_id}}?project_id={{project_id}}",
 					"host": [
-						"{{url}}"
+						"{{neutron_url}}"
 					],
-					"port": "9696",
 					"path": [
 						"v2.0",
 						"routers",
@@ -173,11 +171,10 @@
 					}
 				],
 				"url": {
-					"raw": "{{url}}:9696/v2.0/subnets/{{subnet_id}}?project_id={{project_id}}",
+					"raw": "{{neutron_url}}/v2.0/subnets/{{subnet_id}}?project_id={{project_id}}",
 					"host": [
-						"{{url}}"
+						"{{neutron_url}}"
 					],
-					"port": "9696",
 					"path": [
 						"v2.0",
 						"subnets",
@@ -218,11 +215,10 @@
 					}
 				],
 				"url": {
-					"raw": "{{url}}:9696/v2.0/networks/{{network_id}}?project_id={{project_id}}",
+					"raw": "{{neutron_url}}/v2.0/networks/{{network_id}}?project_id={{project_id}}",
 					"host": [
-						"{{url}}"
+						"{{neutron_url}}"
 					],
-					"port": "9696",
 					"path": [
 						"v2.0",
 						"networks",
