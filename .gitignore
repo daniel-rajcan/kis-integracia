@@ -2,10 +2,15 @@ pkg/
 Gemfile.lock
 vendor/
 spec/fixtures/
-.vagrant/
 .bundle/
 coverage/
 .idea/
-.vagrant
 *.iml
 *.log
+
+### Vagrant
+.vagrant/
+
+### Terraform
+.terraform/
+*.tfvars
