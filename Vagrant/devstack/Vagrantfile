@@ -32,7 +32,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.vm.hostname = "devstack.vagrant"
 
     config.vm.provision "shell", path: "scripts/base.sh", privileged: true
-    config.vm.provision "shell", path: "scripts/install-devstack.sh", privileged: false, args: [password]
+    config.vm.provision "shell", path: "scripts/install-devstack.sh", privileged: false, args: [password, "172.25.0.0/24"]
+
+    ### Required to be able to restart vagrant instance without disruption of OpenStack functionality
+    config.vm.provision "shell", path: "scripts/fix-bridge-after-reboot.sh", privileged: true, args: ["172.25.0.1/24"]
   end
 
 end

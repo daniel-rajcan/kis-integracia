@@ -3,9 +3,8 @@
 RELEASE="victoria"
 
 PASSWORD="$(echo $1 | grep -Po '^--\K.+')"
+FLOATING_RANGE="${2}"
 HOST_IP="10.0.0.25"
-FLOATING_RANGE="172.25.0.0/24"
-GATEWAY_IP=$(sed -E "s/[[:digit:]]+(\/24)/1\1/" <<< $FLOATING_RANGE)
 
 cd /home/vagrant
 git clone https://opendev.org/openstack/devstack
@@ -51,33 +50,3 @@ source /home/vagrant/admin-openrc
 
 openstack user set --project demo demo
 openstack user set --project admin admin
-
-
-### Required to be able to restart vagrant instance without disruption of OpenStack functionality
-cat << EOF > /usr/local/bin/fix-bridge.sh
-brctl addbr br-ex
-ifconfig br-ex up
-ifconfig br-ex ${GATEWAY_IP}
-
-iptables -t nat -I POSTROUTING 1 -o enp0s3 -j MASQUERADE
-
-systemctl restart devstack@*
-EOF
-
-chmod 744 /usr/local/bin/fix-bridge.sh
-
-cat << EOF > /etc/systemd/system/vagrant@fix-bridge.service
-[Unit]
-After=sshd.service
-
-[Service]
-ExecStart=/bin/bash /usr/local/bin/fix-bridge.sh
-
-[Install]
-WantedBy=default.target
-EOF
-
-chmod 664 /etc/systemd/system/vagrant@fix-bridge.service
-
-systemctl daemon-reload
-systemctl enable vagrant@fix-bridge
