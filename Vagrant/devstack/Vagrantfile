@@ -15,9 +15,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       v.cpus = 2
     end
 
+    ### OpenStack IP
     config.vm.network "private_network", ip: "10.0.0.25"
 
-    ### horizon
+    ### horizon (http://10.0.0.25/horizon)
     config.vm.network "forwarded_port", guest: 80, host: 8080
 
     ### vnc
