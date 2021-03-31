@@ -10,6 +10,6 @@ ID=$(wget --no-check-certificate --quiet \
   --method GET \
   --timeout=0 \
   --header "X-Auth-Token: ${AUTH_TOKEN}" \
-   http://10.0.0.25:9696/v2.0/networks -O - | jq '.networks[] | select(.name=="public") | . .id' | sed 's/"//g')
+   http://10.0.0.25/image/v2/images -O - | jq '.images[] | select(.name? | match("cirros-.*")) | . .id' | sed 's/"//g')
 
-printf %s "${ID}" > ext_network_id
+printf %s "${ID}" > cirros_image_id

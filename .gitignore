@@ -12,5 +12,6 @@ coverage/
 .vagrant/
 
 ### Terraform
-.terraform/
 *.tfvars
+.terraform/
+terraform.tfstate.d/

@@ -37,7 +37,3 @@ variable "internal_network_cidr" {
   type    = string
   default = "10.255.0.0/16"
 }
-
-variable "image_id" {
-  type = string
-}
